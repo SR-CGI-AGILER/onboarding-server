@@ -7,7 +7,6 @@ function hello(req, res) {
             data: data
         })
     })
-    
 }
 
 module.exports = {
