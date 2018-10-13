@@ -2,13 +2,20 @@ const router = require('express').Router();
 const passport = require('passport');
 const onboardingController = require('./onboarding.controller');
 const path = require('path');
+const request = require('superagent');
 
-router.get('/onboarding', onboardingController.hello);
+const keys = require('../../config/keys');
+
+
+// router.get('/onboarding', onboardingController.hello);
 
 //Authentication Route with Google
 router.get('/auth/google', passport.authenticate('google',{
     scope: ['email']
 }));
+
+router.post('/auth/api/google', onboardingController.getToken);
+        
 
 //Authentication Route with Github
 router.get('/auth/github', passport.authenticate('github',{ 
@@ -19,7 +26,7 @@ router.get('/auth/github', passport.authenticate('github',{
 router.get('/auth/google/redirect', 
   passport.authenticate('google', { failureRedirect: '/auth/google' }),
   function(req, res) {
-    res.redirect('/auth/google');
+    res.redirect('https://localhost:4200');
 });
 
 
