@@ -27,7 +27,6 @@ function getToken(req, res){
         
 }
 
-
 module.exports = {
     getToken
 }
